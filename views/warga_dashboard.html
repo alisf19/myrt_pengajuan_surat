@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warga Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Path absolute ke CSS -->
+    <style>
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .dashboard-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .dashboard-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">MyRT</div>
+            <nav>
+                <ul>
+                    <li><a href="pengajuan_surat.html">Pengajuan Surat</a></li>
+                    <li><a href="cek_riwayat_pengajuan_surat.html">Cek Riwayat Pengajuan Surat</a></li>
+                    <li><a href="login.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section id="pengajuan-surat">
+            <div class="content">
+                <h2>Pengajuan Surat</h2>
+                <p>Jika ingin melakukan pengajuan surat, klik tombol dibawah ini:</p>
+                <!-- Konten untuk pengajuan surat -->
+            </div>
+            <div class="button-container">
+                <button class="dashboard-button" onclick="window.location.href='/pengajuan_surat'">Menuju Proses Pengajuan Surat</button>
+            </div>
+        </section>
+
+        <section id="cek-riwayat-pengajuan-surat">
+            <div class="content">
+                <h2>Cek Riwayat Pengajuan Surat</h2>
+                <p>Jika ingin melihat riwayat pengajuan surat, klik tombol dibawah ini:</p>
+                <!-- Konten untuk cek riwayat pengajuan surat -->
+            </div>
+            <div class="button-container">
+                <button class="dashboard-button" onclick="window.location.href='cek_riwayat_pengajuan_surat.html'">Menuju Cek Riwayat Pengajuan Surat</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My RT. All rights reserved.</p>
+    </footer>
+</body>
+</html>

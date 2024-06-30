@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - My RT</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Path absolute ke CSS -->
+    <style>
+        .login-form label {
+            display: inline-block; 
+            margin-right: 10px; 
+        }
+
+        .login-form input[type="radio"] {
+            display: inline-block; 
+            vertical-align: middle; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">MyRT</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#about">Tentang Kami</a></li>
+                    <li><a href="index.html#services">Layanan</a></li>
+                    <li><a href="index.html#contact">Kontak</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="login-container">
+        <form class="login-form" id="login-form" action="/login" method="POST"> 
+            <h2>Login</h2>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required placeholder="Masukkan username"><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required placeholder="Masukkan password"><br>
+            <label for="role">Peran:</label> <br>
+            <input type="radio" id="roleRT" name="role" value="RT" checked>
+            <label for="roleRT">RT</label>
+            <input type="radio" id="roleWarga" name="role" value="Warga">
+            <label for="roleWarga">Warga</label><br>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 My RT. All rights reserved.</p>
+    </footer>
+</body>
+</html>

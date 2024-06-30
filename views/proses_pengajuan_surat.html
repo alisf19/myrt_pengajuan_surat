@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proses Pengajuan Surat - My RT</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Path absolute ke CSS -->
+    <style>
+        .form-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="tel"],
+        .form-group input[type="date"],
+        .form-group textarea,
+        .form-group select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-container .form-button {
+            background: #0056b3;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .button-container .form-button:hover {
+            background: #0041a3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">MyRT</div>
+            <nav>
+                <ul>
+                    <li><a href="rt_dashboard.html">Dashboard</a></li>
+                    <li><a href="cek_pengajuan_surat_warga.html">Proses Pengajuan Surat Warga</a></li>
+                    <li><a href="arsip_surat.html">Arsip Surat</a></li>
+                    <li><a href="login.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="form-container">
+                <h2>Proses Pengajuan Surat</h2>
+                <form id="proses-surat-form">
+                    <div class="form-group">
+                        <label for="id_surat">ID Surat:</label>
+                        <input type="text" id="id_surat" name="id_surat" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama">Nama Pemohon:</label>
+                        <input type="text" id="nama" name="nama" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="nohp">No. HP:</label>
+                        <input type="tel" id="nohp" name="nohp" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="jenis-surat">Jenis Surat:</label>
+                        <input type="text" id="jenis-surat" name="jenis-surat" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="deskripsi">Deskripsi Permohonan:</label>
+                        <textarea id="deskripsi" name="deskripsi" rows="4" readonly></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal Pengajuan:</label>
+                        <input type="date" id="tanggal" name="tanggal" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="informasi-tambahan">Informasi Tambahan:</label>
+                        <textarea id="informasi-tambahan" name="informasi-tambahan" rows="4" readonly></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="lampiran">Lampiran:</label>
+                        <input type="file" id="lampiran" name="lampiran" readonly>
+                    </div>
+                    <div class="button-container">
+                        <button type="button" class="form-button" onclick="updateStatus('setujui')">Setujui Surat</button>
+                        <button type="button" class="form-button" onclick="updateStatus('tolak')">Tolak Pengajuan</button>
+                        <button type="button" class="form-button" onclick="window.location.href='cek_pengajuan_surat_warga.html'">Kembali</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My RT. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mendapatkan parameter nama dari URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const nama = urlParams.get('nama');
+        
+        // Contoh data untuk pengisian form
+        const dataPengajuan = {
+            "John Doe": {
+                nohp: "08123456789",
+                jenisSurat: "Surat Keterangan Domisili",
+                deskripsi: "Permohonan surat keterangan domisili untuk keperluan administrasi.",
+                tanggal: "2024-05-01",
+                informasiTambahan: "",
+                lampiran: "lampiran1.pdf"
+            },
+            "Jane Smith": {
+                nohp: "08234567890",
+                jenisSurat: "Surat Keterangan Tidak Mampu (SKTM)",
+                deskripsi: "Permohonan SKTM untuk keperluan beasiswa.",
+                tanggal: "2024-05-02",
+                informasiTambahan: "Segera diproses.",
+                lampiran: "lampiran2.pdf"
+            },
+            "Michael Johnson": {
+                nohp: "08345678901",
+                jenisSurat: "Surat Pengantar Nikah",
+                deskripsi: "Permohonan surat pengantar nikah.",
+                tanggal: "2024-05-03",
+                informasiTambahan: "Diperlukan untuk persyaratan nikah.",
+                lampiran: "lampiran3.pdf"
+            }
+        };
+
+        if (dataPengajuan[nama]) {
+            document.getElementById('nama').value = nama;
+            document.getElementById('nohp').value = dataPengajuan[nama].nohp;
+            document.getElementById('jenis-surat').value = dataPengajuan[nama].jenisSurat;
+            document.getElementById('deskripsi').value = dataPengajuan[nama].deskripsi;
+            document.getElementById('tanggal').value = dataPengajuan[nama].tanggal;
+            document.getElementById('informasi-tambahan').value = dataPengajuan[nama].informasiTambahan;
+            document.getElementById('lampiran').value = dataPengajuan[nama].lampiran;
+        }
+
+        function updateStatus(status) {
+            alert('Status permohonan telah diubah menjadi: ' + status);
+            // Tambahkan logika untuk mengupdate status permohonan di sistem RT dan warga
+            window.location.href = 'cek_pengajuan_surat_warga.html';
+        }
+    </script>
+</body>
+</html>

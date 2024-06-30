@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Riwayat Pengajuan Surat - My RT</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .table-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #f4f4f4;
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .status-link {
+            color: #0056b3;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .status-link:hover {
+            color: #0041a3;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-container .form-button {
+            background: #0056b3;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .button-container .form-button:hover {
+            background: #0041a3;
+        }
+
+        .contact-info {
+            text-align: left;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .contact-info a {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        .contact-info a:hover {
+            color: #0041a3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">MyRT</div>
+            <nav>
+                <ul>
+                    <li><a href="warga_dashboard.html">Dashboard</a></li>
+                    <li><a href="pengajuan_surat.html">Pengajuan Surat</a></li>
+                    <li><a href="cek_riwayat_pengajuan_surat.html">Cek Riwayat Pengajuan Surat</a></li>
+                    <li><a href="login.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="table-container">
+                <h2>Riwayat Pengajuan Surat</h2>
+                <table id="riwayat-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>ID Surat</th>
+                            <th>Nama Pemohon</th>
+                            <th>Jenis Surat</th>
+                            <th>Tanggal Pengajuan</th>
+                            <th>Status Permohonan</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="button-container">
+                    <button type="button" class="form-button" onclick="window.location.href='warga_dashboard.html'">Kembali</button>
+                </div>
+                <div class="contact-info">
+                    <p>Jika status permohonan surat tidak kunjung berubah selama 7 hari kerja</p>
+                    <p>Anda dapat menghubungi kontak dibawah ini:</p>
+                    <p><a href="https://wa.me/628973868978" target="_blank">>>>> Klik Link Berikut <<<<</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My RT. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/cek_riwayat_pengajuan_surat')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const tbody = document.querySelector('#riwayat-table tbody');
+                        data.data.forEach((item, index) => {
+                            const tanggalPengajuan = new Date(item.tanggal);
+                            const formattedDate = tanggalPengajuan.toLocaleDateString('id-ID', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                            });
+
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${index + 1}</td>
+                                <td>${item.id_surat}</td>
+                                <td>${item.nama}</td>
+                                <td>${item.jenis_surat}</td>
+                                <td>${formattedDate}</td>
+                                <td><span class="status-link" onclick="showDetail('${item.status}')">${item.status}</span></td>
+                            `;
+                            tbody.appendChild(row);
+                        });
+                    }
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        });
+
+        function showDetail(status) {
+            let message;
+            if (status === 'Pending') {
+                message = 'Pengajuan surat anda telah kami terima, Kami akan segera memproses pengajuan surat Anda secepat mungkin, Terimakasih.';
+            } else if (status === 'Diterima') {
+                message = 'Pengajuan surat anda telah Disetujui oleh ketua RT, silahkan datang ke Balai RT untuk mengambil surat pengajuan Anda. Terimakasih.';
+            } else if (status === 'Ditolak') {
+                message = 'Mohon maaf, pengajuan surat anda Ditolak. Silahkan membuat pengajuan surat yang baru dengan data yang lebih detail. Terimakasih.';
+            } else {
+                message = 'Status tidak diketahui.';
+            }
+            alert(message);
+        }
+    </script>
+</body>
+</html>

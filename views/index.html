@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My RT</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">MyRT</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">Tentang Kami</a></li>
+                    <li><a href="#services">Layanan</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                    <li><a href="login.html" id="login-link">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section id="home">
+            <div class="content">
+                <h1>Selamat Datang di My RT</h1>
+                <p>Kami berkomitmen untuk membangun lingkungan yang bersih, aman, dan harmonis.</p>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="content">
+                <h2>Tentang Kami</h2>
+                <p>RT kami terdiri dari sejumlah keluarga yang bekerja sama untuk menciptakan komunitas yang ramah dan suportif.</p>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="content">
+                <h2>Layanan</h2>
+                <ul>
+                    <li>Keamanan Lingkungan</li>
+                    <li>Kebersihan dan Sanitasi</li>
+                    <li>Kegiatan Sosial</li>
+                    <li>Pelayanan Publik</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="content">
+                <h2>Kontak Kami</h2>
+                <p>Email: rtkami@example.com</p>
+                <p>Telepon: 012-345-6789</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My RT. All rights reserved.</p>
+    </footer>
+
+    <!-- Login Form Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <label for="role">Peran:</label>
+                <input type="radio" id="rt" name="role" value="RT" required>
+                <label for="rt">RT</label>
+                <input type="radio" id="warga" name="role" value="Warga" required>
+                <label for="warga">Warga</label>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+</html>

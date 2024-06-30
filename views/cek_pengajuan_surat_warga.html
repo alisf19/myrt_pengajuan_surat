@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Pengajuan Surat Warga - My RT</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Path absolute ke CSS -->
+    <style>
+        .table-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #f4f4f4;
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .name-cell {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .name-cell a {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .name-cell a:hover {
+            color: #0056b3;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-container .form-button {
+            background: #0056b3;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .button-container .form-button:hover {
+            background: #0041a3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">MyRT</div>
+            <nav>
+                <ul>
+                    <li><a href="rt_dashboard.html">Dashboard</a></li>
+                    <li><a href="cek_pengajuan_surat_warga.html">Proses Pengajuan Surat Warga</a></li>
+                    <li><a href="arsip_surat.html">Arsip Surat</a></li>
+                    <li><a href="login.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="table-container">
+                <h2>Daftar Pengajuan Surat Warga</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>ID Surat</th>
+                            <th>Nama Pemohon</th>
+                            <th>Jenis Surat</th>
+                            <th>Tanggal Pengajuan</th>
+                            <th>Status Pengajuan</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--data dummies-->
+                        <tr>
+                            <td>2</td>
+                            <td>2</td>
+                            <td class="name-cell">Jane Smith</td>
+                            <td>Surat Keterangan Tidak Mampu (SKTM)</td>
+                            <td>2024-05-02</td>
+                            <td>Telah Disetujui</td>
+                            <td><button onclick="window.location.href='proses_pengajuan_surat.html?id=2'">Verifikasi Surat</button></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>3</td>
+                            <td class="name-cell">Michael Johnson</td>
+                            <td>Surat Pengantar Nikah</td>
+                            <td>2024-05-03</td>
+                            <td>Ditolak</td>
+                            <td><button onclick="window.location.href='proses_pengajuan_surat.html?id=3'">Verifikasi Surat</button></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+                <div class="button-container">
+                    <button type="button" class="form-button" onclick="window.location.href='rt_dashboard.html'">Kembali</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My RT. All rights reserved.</p>
+    </footer>
+</body>
+</html>

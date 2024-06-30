@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengajuan Surat - My RT</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .form-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="tel"],
+        .form-group input[type="date"],
+        .form-group textarea,
+        .form-group select,
+        .form-group input[type="file"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-container .form-button {
+            background: #0056b3;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .button-container .form-button:hover {
+            background: #0041a3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">MyRT</div>
+            <nav>
+                <ul>
+                    <li><a href="warga_dashboard.html">Dashboard</a></li>
+                    <li><a href="pengajuan_surat.html">Pengajuan Surat</a></li>
+                    <li><a href="cek_riwayat_pengajuan_surat.html">Cek Riwayat Pengajuan Surat</a></li>
+                    <li><a href="login.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="form-container">
+                <h2>Form Pengajuan Surat</h2>
+                <form id="pengajuan-surat-form" action="/pengajuan_surat" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="id-surat">Id Surat:</label>
+                        <input type="text" id="id-surat" name="id_surat" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama">Nama Pemohon:</label>
+                        <input type="text" id="nama" name="nama" required placeholder="Masukkan nama pemohon">
+                    </div>
+                    <div class="form-group">
+                        <label for="nohp">No. HP:</label>
+                        <input type="tel" id="nohp" name="nohp" required placeholder="Masukkan no. Handphone pemohon">
+                    </div>
+                    <div class="form-group">
+                        <label for="jenis-surat">Jenis Surat:</label>
+                        <select id="jenis-surat" name="jenis_surat" required>
+                            <option value="Surat Keterangan Domisili">Surat Keterangan Domisili</option>
+                            <option value="Surat Keterangan Tidak Mampu (SKTM)">Surat Keterangan Tidak Mampu (SKTM)</option>
+                            <option value="Surat Pengantar Nikah">Surat Pengantar Nikah</option>
+                            <option value="Surat Izin Usaha">Surat Izin Usaha</option>
+                            <option value="Surat Keterangan Kelahiran">Surat Keterangan Kelahiran</option>
+                            <option value="Surat Keterangan Kematian">Surat Keterangan Kematian</option>
+                            <option value="Surat Pengantar Pindah">Surat Pengantar Pindah</option>
+                            <option value="Surat Keterangan Penghasilan">Surat Keterangan Penghasilan</option>
+                            <option value="Surat Pengantar SKCK">Surat Pengantar SKCK</option>
+                            <option value="Surat Izin Mendirikan Bangunan (IMB)">Surat Izin Mendirikan Bangunan (IMB)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="deskripsi">Deskripsi Permohonan:</label>
+                        <textarea id="deskripsi" name="deskripsi" rows="4" required placeholder="Masukkan deskripsi permohonan surat"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal Pengajuan:</label>
+                        <input type="date" id="tanggal" name="tanggal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="informasi-tambahan">Informasi Tambahan:</label>
+                        <textarea id="informasi-tambahan" name="informasi_tambahan" rows="4" placeholder="Masukkan informasi tambahan (jika diperlukan)"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="lampiran">Lampiran (Word/PDF):</label>
+                        <input type="file" id="lampiran" name="lampiran" accept=".doc,.docx,.pdf" required>
+                    </div>
+                    <div class="button-container">
+                        <button type="submit" class="form-button">Ajukan</button>
+                        <button type="reset" class="form-button clear">Clear</button>
+                        <button type="button" class="form-button cancel" onclick="window.location.href='warga_dashboard.html'">Batal</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My RT. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        // Mendapatkan ID Pengajuan Surat Baru dari Backend setelah halaman dimuat
+        fetch('/generate_id_surat')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('id-surat').value = data.newId;
+        })
+        .catch(error => console.error('Error fetching new ID:', error));
+        });
+
+        // Set default date to today
+        document.getElementById('tanggal').valueAsDate = new Date();
+
+        // Menangani submit form dengan AJAX
+        document.getElementById('pengajuan-surat-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+
+            fetch('/pengajuan_surat', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Pengajuan surat telah terkirim.');
+                    window.location.href = 'warga_dashboard.html';
+                } else {
+                    alert('Pengajuan surat gagal. Coba lagi.');
+                }
+            })
+            .catch(error => console.error('Error submitting form:', error));
+        });
+
+        // Tambahkan event listener untuk tombol "Batal"
+        document.querySelector('.cancel').addEventListener('click', function() {
+            window.location.href = 'warga_dashboard.html';
+        });
+    </script>
+</body>
+</html>

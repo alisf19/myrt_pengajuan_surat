@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RT Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Path absolute ke CSS -->
+    <style>
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .dashboard-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .dashboard-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">MyRT</div>
+            <nav>
+                <ul>
+                    <li><a href="cek_pengajuan_surat_warga.html">Proses Pengajuan Surat Warga</a></li>
+                    <li><a href="arsip_surat.html">Arsip Surat</a></li>
+                    <li><a href="login.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+            <section id="proses-pengajuan">
+                <div class="content">
+                    <h2>Proses Pengajuan Surat Warga</h2>
+                    <p>Jika ingin memproses pengajuan surat warga, klik tombol dibawah ini:</p>
+                    <!-- Konten untuk proses pengajuan surat warga -->
+                </div>
+                <div class="button-container">
+                    <button class="dashboard-button" onclick="window.location.href='cek_pengajuan_surat_warga.html'">Menuju Proses Pengajuan Surat</button>
+                </div>
+            </section>
+        </main>
+        
+
+        <section id="arsip-surat">
+            <div class="content">
+                <h2>Arsip Surat (Cooming Soon)</h2>
+                <p>Jika ingin mengelola arsip surat, klik tombol dibawah ini:</p>
+                <!-- Konten untuk arsip surat -->
+            </div>
+            <div class="button-container">
+                <button class="dashboard-button" onclick="window.location.href='arsip_surat.html'">Menuju Arsip Surat</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My RT. All rights reserved.</p>
+    </footer>
+</body>
+</html>
